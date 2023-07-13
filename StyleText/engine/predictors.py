@@ -28,7 +28,7 @@ class StyleTextRecPredictor(object):
                              ], "Generator {} not supported.".format(algorithm)
         use_gpu = config["Global"]['use_gpu']
         check_gpu(use_gpu)
-        paddle.set_device('gpu' if use_gpu else 'cpu')
+        paddle.set_device('cpu')
         self.logger = get_logger()
         self.generator = getattr(style_text_rec, algorithm)(config)
         self.height = config["Global"]["image_height"]

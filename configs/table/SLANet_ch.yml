@@ -1,26 +1,26 @@
 Global:
-  use_gpu: True
+  use_gpu: False
   epoch_num: 400
   log_smooth_window: 20
   print_batch_step: 20
-  save_model_dir: ./output/SLANet_ch
+  save_model_dir: D:\pythonProject\pythonProject\PaddleOCR\output\SLANet_ch
   save_epoch_step: 400
   # evaluation is run every 331 iterations after the 0th iteration
-  eval_batch_step: [0, 331]
+  eval_batch_step: [0, 375]
   cal_metric_during_train: True
-  pretrained_model: 
+  pretrained_model: D:\pythonProject\pythonProject\PaddleOCR\pretrain_models\ch_ppstructure_mobile_v2.0_SLANet_train\best_accuracy.pdparams
   checkpoints: 
-  save_inference_dir: ./output/SLANet_ch/infer
+  save_inference_dir: D:\pythonProject\pythonProject\PaddleOCR\output\SLANet_ch\infer
   use_visualdl: False
   infer_img: ppstructure/docs/table/table.jpg
   # for data or label process
-  character_dict_path: ppocr/utils/dict/table_structure_dict_ch.txt
+  character_dict_path: D:\pythonProject\pythonProject\PaddleOCR\ppocr\utils\dict\table_structure_dict_ch.txt
   character_type: en
   max_text_length: &max_text_length 500
   box_format: &box_format xyxyxyxy # 'xywh', 'xyxy', 'xyxyxyxy'
   infer_mode: False
   use_sync_bn: True
-  save_res_path: output/infer
+  save_res_path: D:\pythonProject\pythonProject\PaddleOCR\output\infer
 
 Optimizer:
   name: Adam
@@ -28,7 +28,9 @@ Optimizer:
   beta2: 0.999
   clip_norm: 5.0
   lr:
-    learning_rate: 0.001
+    learning_rate: 0.0005
+    name: Const
+    warmup_epoch: 0
   regularizer:
     name: 'L2'
     factor: 0.00000
@@ -71,8 +73,8 @@ Metric:
 Train:
   dataset:
     name: PubTabDataSet
-    data_dir: train_data/table/train/
-    label_file_list: [train_data/table/train.txt]
+    data_dir: D:\pythonProject\pythonProject\PaddleOCR\data\table_gen_dataset
+    label_file_list: [D:\pythonProject\pythonProject\PaddleOCR\train.txt]
     transforms:
       - DecodeImage:
           img_mode: BGR
@@ -107,8 +109,8 @@ Train:
 Eval:
   dataset:
     name: PubTabDataSet
-    data_dir: train_data/table/val/
-    label_file_list: [train_data/table/val.txt]
+    data_dir: D:\pythonProject\pythonProject\PaddleOCR\data\table_gen_dataset
+    label_file_list: [D:\pythonProject\pythonProject\PaddleOCR\val.txt]
     transforms:
       - DecodeImage:
           img_mode: BGR

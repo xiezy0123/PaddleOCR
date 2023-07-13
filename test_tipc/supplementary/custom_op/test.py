@@ -44,7 +44,7 @@ class LeNet(nn.Layer):
 
 
 # set device
-paddle.set_device("gpu")
+paddle.set_device("cpu")
 
 # model
 net = LeNet()
